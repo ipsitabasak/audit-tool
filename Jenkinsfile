@@ -1,5 +1,5 @@
 podTemplate(
-    label: 'cd-jenkins-jenkins-slave', 
+    label: 'jenkins-slave', 
     containers: [ 
         containerTemplate(
             name: 'docker', 
@@ -21,7 +21,7 @@ podTemplate(
         )
     ]
 ) {
-    node('cd-jenkins-jenkins-slave') {
+    node('jenkins-slave') {
         def commitId
         stage ('Checkout') {
             checkout scm
