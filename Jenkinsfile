@@ -13,6 +13,12 @@ podTemplate(
             ttyEnabled: true,
             command: 'cat'
         )
+    ],
+    volumes: [
+        hostPathVolume(
+            hostPath: '/var/run/docker.sock',
+            mountPath: '/var/run/docker.sock'
+        )
     ]
 ) {
     node('jenkins-slave') {
@@ -25,6 +31,16 @@ podTemplate(
         }
         def repository
         def projectId = 'audit-tool-285315'
+        stage ('Build') {
+            container ('docker') {
+                def dockerImage = docker.build("${projectId}/audittoolassignment", "./")
+                
+                docker.withRegistry('https://gcr.io', "gcr:${projectId}") {
+                    
+                    dockerImage.push('latest')
+                }
+            }
+        }
 
         // stage ('Build') {
         //     container ('docker') {
