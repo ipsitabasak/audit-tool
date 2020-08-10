@@ -10,12 +10,12 @@ podTemplate(label: 'jenkins-slave', containers: [
       image: 'alpine/helm:2.14.0', 
       ttyEnabled: true, 
       command: 'cat'
-    ),
+    )],
     volumes: [
         hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock'),
         hostPathVolume(mountPath: '/usr/local/bin/helm', hostPath: '/usr/local/bin/helm')
     ]
-  ]) {
+  ) {
     node('jenkins-slave') {
         stage('Get latest version of code') {
           checkout scm
