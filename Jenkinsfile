@@ -1,4 +1,4 @@
-podTemplate(label: 'mypod', serviceAccount: 'jenkins-ci', containers: [ 
+podTemplate(label: 'jenkins-slave', serviceAccount: 'jenkins-ci', containers: [ 
     containerTemplate(
       name: 'docker', 
       image: 'docker', 
@@ -12,7 +12,7 @@ podTemplate(label: 'mypod', serviceAccount: 'jenkins-ci', containers: [
       command: 'cat'
     )
   ]) {
-    node('mypod') {
+    node('jenkins-slave') {
         stage('Get latest version of code') {
           checkout scm
         }   
