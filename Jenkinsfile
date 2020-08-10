@@ -1,23 +1,20 @@
-pipeline{
-     agent any
-    
-    stages{
-        stage('Installing NPM dependencies'){
-           
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
             steps {
-                sh 'npm install'
+                echo 'Building..'
             }
         }
-         stage('Run Unit Test'){
-        
+        stage('Test') {
             steps {
-                sh 'npm run test'
+                echo 'Testing..'
             }
         }
-        stage('Run Coverage Test'){
-        
+        stage('Deploy') {
             steps {
-                sh 'npm run test:cov'
+                echo 'Deploying....'
             }
         }
     }
