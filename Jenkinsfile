@@ -45,5 +45,5 @@ podTemplate(
     //              sh("kubectl apply -f ./microservices/audit-service/deployment")
     //         }
     //     }
-    // }
+    }
 }
