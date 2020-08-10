@@ -31,9 +31,9 @@ podTemplate(
     
         stage ('Build') {
             container ('docker') {
-                def dockerImage = docker.build("${projectId}/audittoolassignment", ".")
+                def dockerImage = docker.build("${projectId}/audittoolassignmentgit", ".")
                 
-                docker.withRegistry('https://gcr.io', "ibasak") {
+                docker.withRegistry('https://gcr.io', "gcr:ibasak") {
                     
                     dockerImage.push('latest')
                 }
