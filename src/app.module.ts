@@ -3,10 +3,11 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { MongooseModule } from '@nestjs/mongoose'; 
 import { AuditModule } from './audit/audit.module';
+import { mongoConfig } from '../config/config';
 
 @Module({
   imports: [
-    MongooseModule.forRoot(`mongodb+srv://Ipsita:FmaKQbNs83CgR3uV@cluster0.wzcnu.gcp.mongodb.net/nestjs-audit-app?retryWrites=true&w=majority`),
+    MongooseModule.forRoot(`mongodb+srv://${mongoConfig}/nestjs-audit-app?retryWrites=true&w=majority`),
     AuditModule,
   ],
   controllers: [AppController],
