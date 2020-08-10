@@ -29,21 +29,21 @@ podTemplate(
         }
         def projectId = 'audit-tool-285315'
     
-        stage ('Build') {
-            container ('docker') {
-                def dockerImage = docker.build("${projectId}/audit", "./")
+    //     stage ('Build') {
+    //         container ('docker') {
+    //             def dockerImage = docker.build("${projectId}/audittoolassignment", "./")
                 
-                docker.withRegistry('https://gcr.io', "gcr:${projectId}") {
+    //             docker.withRegistry('https://gcr.io', "gcr:${projectId}") {
                     
-                    dockerImage.push('latest')
-                }
-            }
-        }
+    //                 dockerImage.push('latest')
+    //             }
+    //         }
+    //     }
         
-        // stage ('Deployment') {
-        //     container ('kubectl') {
-        //          sh("kubectl apply -f ./microservices/audit-service/deployment")
-        //     }
-        // }
-    }
+    //     stage ('Deployment') {
+    //         container ('kubectl') {
+    //              sh("kubectl apply -f ./microservices/audit-service/deployment")
+    //         }
+    //     }
+    // }
 }
