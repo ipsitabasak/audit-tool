@@ -5,19 +5,19 @@ pipeline{
         stage('Installing NPM dependencies'){
            
             steps {
-                sh '/usr/local/bin/npm install'
+                sh 'npm install'
             }
         }
          stage('Run Unit Test'){
         
             steps {
-                sh '/usr/local/bin/npm run test'
+                sh 'npm run test'
             }
         }
         stage('Run Coverage Test'){
         
             steps {
-                sh '/usr/local/bin/npm run test:cov'
+                sh 'npm run test:cov'
             }
         }
     }
