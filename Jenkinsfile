@@ -39,14 +39,6 @@ podTemplate(
                 }
             }
         }
-
-        stage ('Deploy') {
-            container ('helm') {
-                sh "helm upgrade -n default --install audit-release infra/k8s/charts/reports --wait --set image.tag=${commitId}"
-            }
-        }
-
-        
         stage ('Deployment') {
             container ('kubectl') {
                  sh("kubectl apply -f ./audit.yaml")
