@@ -33,7 +33,7 @@ podTemplate(
             container ('docker') {
                 def dockerImage = docker.build("${projectId}/audittoolassignmentgit", ".")
                 
-                docker.withRegistry('https://gcr.io', "${projectId}") {
+                docker.withRegistry('https://gcr.io', "gcr:${projectId}") {
                     
                     dockerImage.push('latest')
                 }
