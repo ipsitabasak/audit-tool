@@ -35,10 +35,10 @@ podTemplate(
                 }
             }
         }
-        // stage ('Deployment') {
-        //     container ('kubectl') {
-        //          sh("kubectl apply -f ./audit.yaml")
-        //     }
-        // }
+        stage ('Deployment') {
+            container ('kubectl') {
+                 sh("kubectl apply -f ./audit.yaml")
+            }
+        }
     }
 }
