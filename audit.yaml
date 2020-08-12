@@ -1,32 +1,36 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: audit-demo
+  name: nginx-1
   namespace: default
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
-      bb: web
+      app: nginx-1
   template:
     metadata:
       labels:
-        bb: web
+        app: nginx-1
     spec:
       containers:
-      - name: audit-site
-        image: ibasak/audittoolassignmentgit:1.0
+      - name: audit-tool-git-sha256-1
+        image: gcr.io/audit-tool-285315/audit-tool-git
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: audit-entrypoint
+  labels:
+    app: nginx-1
+  name: audit-service
   namespace: default
+  selfLink: /api/v1/namespaces/default/services/audit-service
 spec:
-  type: NodePort
-  selector:
-    bb: web
   ports:
-  - port: 5000
+  - nodePort: 31100
+    port: 80
+    protocol: TCP
     targetPort: 5000
-    nodePort: 30001
+  selector:
+    app: nginx-1
+  type: LoadBalancer

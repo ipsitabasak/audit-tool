@@ -1,5 +1,5 @@
 podTemplate(
-    label: 'jenkins-slave', 
+    label: 'jenkins', 
     containers: [ 
         containerTemplate(
             name: 'docker', 
@@ -22,19 +22,15 @@ podTemplate(
     ]
 ) {
     node('jenkins-slave') {
-        def commitId
         stage ('Checkout') {
             checkout scm
-            commitId = sh(script: 'git rev-parse --short HEAD', returnStdout: true).trim()
         }
         def projectId = 'audit-tool-285315'
     
         stage ('Build') {
             container ('docker') {
-                def dockerImage = docker.build("${projectId}/audittoolassignmentgit", ".")
-                
                 docker.withRegistry('https://gcr.io', "gcr:${projectId}") {
-                    
+                    def dockerImage = docker.build("${projectId}/audittoolassignmentgit", ".")
                     dockerImage.push('latest')
                 }
             }
