@@ -30,7 +30,7 @@ podTemplate(
         stage ('Build') {
             container ('docker') {
                 docker.withRegistry('https://gcr.io', "gcr:${projectId}") {
-                    def dockerImage = docker.build("${projectId}/audittoolassignmentgit", ".")
+                    def dockerImage = docker.build("${projectId}/audit-tool-git", ".")
                     dockerImage.push('latest')
                 }
             }
