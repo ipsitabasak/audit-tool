@@ -1,5 +1,5 @@
 podTemplate(
-    label: 'jenkins', 
+    label: 'audit-jenkins', 
     containers: [ 
         containerTemplate(
             name: 'docker', 
@@ -21,7 +21,7 @@ podTemplate(
         )
     ]
 ) {
-    node('jenkins-slave') {
+    node('audit-jenkins') {
         stage ('Checkout') {
             checkout scm
         }
